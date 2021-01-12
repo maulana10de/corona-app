@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { API_URL_IDN } from '../support/list_url';
+import { APIURL_IDN } from '../support/list_url';
 
 // const API_URL_INA = 'https://indonesia-covid-19-api.now.sh';
 class IndoInfo extends React.Component {
@@ -16,7 +16,7 @@ class IndoInfo extends React.Component {
   }
 
   getDataIndo = () => {
-    Axios.get(API_URL_IDN + `/api`)
+    Axios.get(APIURL_IDN + `/api/indonesia`)
       .then((res) => {
         console.log('indo', res);
         this.setState({ dataIndo: res.data });
@@ -37,8 +37,8 @@ class IndoInfo extends React.Component {
             <div className='card bg-warning'>
               <div className='card-body'>
                 <h5 className='card-title'>Confirmed</h5>
-                {dataIndo.meninggal ? (
-                  <h2>{dataIndo.jumlahKasus.toLocaleString()}</h2>
+                {dataIndo.positif ? (
+                  <h2>{dataIndo.positif.toLocaleString()}</h2>
                 ) : (
                   <h3>Waiting</h3>
                 )}
@@ -49,8 +49,8 @@ class IndoInfo extends React.Component {
             <div className='card bg-secondary'>
               <div className='card-body'>
                 <h5 className='card-title'>Treatment</h5>
-                {dataIndo.perawatan ? (
-                  <h2>{dataIndo.perawatan.toLocaleString()}</h2>
+                {dataIndo.dirawat ? (
+                  <h2>{dataIndo.dirawat.toLocaleString()}</h2>
                 ) : (
                   <h3>Waiting</h3>
                 )}
